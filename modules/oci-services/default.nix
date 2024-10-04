@@ -14,8 +14,8 @@
   config = mkIf cfg.enable {
     services.nginx.enable = true;
 
-    # enable podman
     # todo: allow docker
+    # todo: add portainer agent
     virtualisation.docker.enable = false;
     virtualisation.podman.enable = true;
     virtualisation.podman.dockerCompat = true;
