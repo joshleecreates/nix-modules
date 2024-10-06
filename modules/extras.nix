@@ -25,8 +25,8 @@ in
     # Enable mDNS for `hostname.local` addresses
     services.avahi = mkIf cfg.mDNS.enable {
       enable = true;
-      avahi.nssmdns = true;
-      avahi.publish = {
+      nssmdns = true;
+      publish = {
         enable = true;
         addresses = true;
       };
