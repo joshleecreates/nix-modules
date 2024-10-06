@@ -3,6 +3,7 @@ with lib;
 let
   cfg = config.oci-services;
 in
+{
   options.oci-services = {
     enable = mkEnableOption "oci services";
   };
