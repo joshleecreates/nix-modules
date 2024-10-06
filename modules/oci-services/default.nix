@@ -1,8 +1,8 @@
 { config, pkgs, modulesPath, lib, system, ... }:
 with lib;
-let {
+let
   cfg = config.oci-services;
-} in {
+in
   options.oci-services = {
     enable = mkEnableOption "oci services";
   };
