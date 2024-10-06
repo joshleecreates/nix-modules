@@ -1,7 +1,8 @@
 { config, pkgs, modulesPath, lib, system, ... }:
-
-{
+with lib;
+let {
   cfg = config.oci-services;
+} in {
   options.oci-services = {
     enable = mkEnableOption "oci services";
   };
@@ -11,7 +12,7 @@
     ./monitoring.nix
   ];
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     services.nginx.enable = true;
 
     # todo: allow docker
