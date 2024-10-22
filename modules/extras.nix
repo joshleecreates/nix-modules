@@ -12,7 +12,6 @@ in
       lib.mkEnableOption "passwordless SSH";
     extras.remoteUpdates.enable = 
       lib.mkEnableOption "remote updates with nixos rebuild";
-    };
   };
 
   config = {
