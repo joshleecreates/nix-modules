@@ -23,4 +23,6 @@
     autoResize = true;
     fsType = "ext4";
   };
+
+  system.stateVersion = lib.mkDefault "24.05";
 }
