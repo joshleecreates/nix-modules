@@ -33,6 +33,7 @@ in
       settings.KbdInteractiveAuthentication = false;
     };
     programs.ssh.startAgent = mkIf cfg.passwordlessSSH.enable true;
+    security.sudo.wheelNeedsPassword = mkIf cfg.passwordlessSSH.enable false;
 
     # Allow remote updates with flakes and non-root users
     nix.settings.trusted-users = mkIf cfg.remoteUpdates.enable [ "root" "@wheel" ];
