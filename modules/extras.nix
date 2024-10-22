@@ -6,18 +6,12 @@ let
 in
 {
   options = {
-    extras.mDNS.enable = lib.mkEnableOption "mdns with avahi";
-    extras.passwordlessSSH.enable = lib.mkEnableOption "passwordless SSH";
-    extras.remoteUpdates = {
-      enable = lib.mkEnableOption "remote updates with nixos rebuild";
-      username = lib.mkOption {
-        type = str;
-        description = "the user who will apply remote updates";
-      };
-      publicKey = lib.mkOption {
-        type = str;
-        description = "the public ssh key for the user who will apply remote updates";
-      };
+    extras.mDNS.enable = 
+      lib.mkEnableOption "mdns with avahi";
+    extras.passwordlessSSH.enable = 
+      lib.mkEnableOption "passwordless SSH";
+    extras.remoteUpdates.enable = 
+      lib.mkEnableOption "remote updates with nixos rebuild";
     };
   };
 
@@ -40,7 +34,8 @@ in
     };
     programs.ssh.startAgent = mkIf cfg.passwordlessSSH.enable true;
 
-    # Don't ask for sudo passwords
-    security.sudo.wheelNeedsPassword = false;
+    # Allow remote updates with flakes and non-root users
+    nix.settings.trusted-users = mkIf cfg.remoteUpdates.enable [ "root" "@wheel" ];
+    nix.settings.experimental-features = mkIf cfg.remoteUpdates.enable [ "nix-command" "flakes" ];
   };
 }
