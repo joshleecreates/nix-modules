@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -22,6 +22,4 @@
     python3
     dnsutils
   ];
-
-  system.stateVersion = lib.mkDefault "24.05";
 }
