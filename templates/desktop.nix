@@ -5,8 +5,8 @@
     ../modules/extras.nix
   ];
 
-  extras.passwordlessSSH.enable = true;
-  extras.remoteUpdates.enable = true;
+  extras.passwordlessSSH.enable = lib.mkDefault true;
+  extras.remoteUpdates.enable = lib.mkDefault true;
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -24,13 +24,10 @@
     pulse.enable = true;
   };
 
-  # Install firefox.
   programs.firefox.enable = true;
-  services.tailscale.enable = lib.mkDefault true;
   nixpkgs.config.allowUnfree = lib.mkDefault true;
+  services.tailscale.enable = lib.mkDefault true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim 
     wget
